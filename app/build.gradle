@@ -23,7 +23,8 @@ dependencies {
 
     // INTEGRATED LIBRARIES
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':jokeslib')
+    compile project(':jokesAndroidLib')
+    compile project(':jokesLib')
 
     // ANDROID SUPPORT LIBRARIES
     compile 'com.android.support:appcompat-v7:23.+'
