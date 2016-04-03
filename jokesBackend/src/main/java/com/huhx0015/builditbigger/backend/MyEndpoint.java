@@ -9,10 +9,14 @@ package com.huhx0015.builditbigger.backend;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
-
 import javax.inject.Named;
 
-/** An endpoint class we are exposing */
+/** -----------------------------------------------------------------------------------------------
+ *  [MyEndpoint] CLASS
+ *  DESCRIPTION: An endpoint class we are exposing.
+ *  -----------------------------------------------------------------------------------------------
+ */
+
 @Api(
   name = "myApi",
   version = "v1",
@@ -29,8 +33,6 @@ public class MyEndpoint {
     public MyBean sayHi(@Named("name") String name) {
         MyBean response = new MyBean();
         response.setData("Hi, " + name);
-
         return response;
     }
-
 }

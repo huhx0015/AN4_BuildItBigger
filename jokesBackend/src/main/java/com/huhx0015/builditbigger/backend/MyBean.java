@@ -1,6 +1,11 @@
 package com.huhx0015.builditbigger.backend;
 
-/** The object model for the data we are sending through endpoints */
+/** -----------------------------------------------------------------------------------------------
+ *  [MyBean] CLASS
+ *  DESCRIPTION: The object model for the data we are sending through endpoints.
+ *  -----------------------------------------------------------------------------------------------
+ */
+
 public class MyBean {
 
     private String myData;
