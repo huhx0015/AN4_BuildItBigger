@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.udacity.gradle.builditbigger"
+        applicationId "com.huhx0015.builditbigger"
         minSdkVersion 10
         targetSdkVersion 22
         versionCode 1
@@ -15,6 +15,18 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        free {
+            applicationId "com.huhx0015.builditbigger.free"
+            versionName "1.0-free"
+        }
+
+        paid {
+            applicationId "com.huhx0015.builditbigger.paid"
+            versionName "1.0-paid"
         }
     }
 }
@@ -28,13 +40,7 @@ dependencies {
 
     // ANDROID SUPPORT LIBRARIES
     compile 'com.android.support:appcompat-v7:23.+'
-    compile 'com.android.support:recyclerview-v7:23.+'
-    compile 'com.android.support:cardview-v7:23.+'
 
     // GOOGLE PLAY SERVICES LIBRARIES:
     compile 'com.google.android.gms:play-services:8.4.0'
-
-    // THIRD-PARTY LIBRARIES:
-    compile 'com.squareup.picasso:picasso:+'
-    compile 'com.jakewharton:butterknife:+'
 }
