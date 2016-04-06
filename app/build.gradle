@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion '23.0.3'
 
     defaultConfig {
         applicationId "com.huhx0015.builditbigger"
@@ -43,4 +43,7 @@ dependencies {
 
     // GOOGLE PLAY SERVICES LIBRARIES:
     compile 'com.google.android.gms:play-services:8.4.0'
+
+    // THIRD-PARTY LIBRARIES:
+    compile 'com.jakewharton:butterknife:7.0.1'
 }
