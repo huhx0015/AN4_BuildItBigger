@@ -35,7 +35,8 @@ public class MainActivityFragment extends Fragment {
     private View fragmentView;
 
     // NETWORK VARIABLES
-    private static final String LOCALHOST_ADDRESS = "http://10.0.0.2:8080/_ah/api/";
+    //private static final String LOCALHOST_ADDRESS = "http://10.0.0.2:8080/_ah/api/";
+    private static final String LOCALHOST_ADDRESS = "http://10.0.3.15:8080/_ah/api/";
 
     // VIEW INJECTION VARIABLES
     @Bind(R.id.fragment_main_joke_button) Button jokesButton;
