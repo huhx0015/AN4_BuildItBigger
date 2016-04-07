@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -35,11 +36,12 @@ public class MainActivityFragment extends Fragment {
     private View fragmentView;
 
     // NETWORK VARIABLES
-    //private static final String LOCALHOST_ADDRESS = "http://10.0.0.2:8080/_ah/api/";
-    private static final String LOCALHOST_ADDRESS = "http://10.0.3.15:8080/_ah/api/";
+    private static final String EMULATOR_ADDRESS = "http://10.0.2.2:8080/_ah/api/";
+    private static final String GENYMOTION_ADDRESS = "http://10.0.3.2:8080/_ah/api/";
 
     // VIEW INJECTION VARIABLES
     @Bind(R.id.fragment_main_joke_button) Button jokesButton;
+    @Bind(R.id.fragment_main_center_layout) LinearLayout jokesButtonContainer;
     @Bind(R.id.fragment_main_progress_bar) ProgressBar jokesProgressBar;
 
     /** CONSTRUCTOR METHODS ____________________________________________________________________ **/
@@ -103,6 +105,7 @@ public class MainActivityFragment extends Fragment {
         Intent jokeIntent = new Intent(getActivity(), JokeActivity.class);
         jokeIntent.putExtra(getActivity().getString(R.string.joke_key), joke);
         getActivity().startActivity(jokeIntent);
+        getActivity().finish();
     }
 
     /** SUBCLASSES _____________________________________________________________________________ **/
@@ -120,6 +123,7 @@ public class MainActivityFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            jokesButtonContainer.setVisibility(View.GONE); // Hides the button container.
             jokesProgressBar.setVisibility(View.VISIBLE); // Displays the progress bar.
         }
 
@@ -130,7 +134,7 @@ public class MainActivityFragment extends Fragment {
             if (myApiService == null) {
                 MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                         new AndroidJsonFactory(), null)
-                        .setRootUrl(LOCALHOST_ADDRESS)
+                        .setRootUrl(GENYMOTION_ADDRESS)
                         .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                             @Override
                             public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
@@ -148,7 +152,11 @@ public class MainActivityFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             jokesProgressBar.setVisibility(View.GONE); // Hides the progress bar.
-            if (result != null) { launchJokeIntent(result); } // Launches an intent to JokeActivity.
+            if (result != null) {
+                launchJokeIntent(result); // Launches an intent to JokeActivity.
+            } else {
+                jokesButtonContainer.setVisibility(View.VISIBLE); // Displays the joke button container.
+            }
         }
     }
 }

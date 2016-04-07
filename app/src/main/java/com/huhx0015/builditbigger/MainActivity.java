@@ -25,5 +25,6 @@ public class MainActivity extends AppCompatActivity {
         JokeProducer jokeSource = new JokeProducer();
         intent.putExtra(getResources().getString(R.string.joke_key), jokeSource.tellMeAJoke());
         startActivity(intent);
+        finish();
     }
 }
