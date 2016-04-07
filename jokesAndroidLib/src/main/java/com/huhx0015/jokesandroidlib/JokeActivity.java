@@ -7,7 +7,6 @@ import android.view.MenuItem;
 
 /** -----------------------------------------------------------------------------------------------
  *  [JokeActivity] CLASS
- *  PROGRAMMER: Michael Yoon Huh
  *  DESCRIPTION: JokeActivity is an activity class that is responsible for displaying the
  *  JokeFragment.
  *  -----------------------------------------------------------------------------------------------

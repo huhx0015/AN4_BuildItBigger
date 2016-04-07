@@ -37,6 +37,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':jokesAndroidLib')
     compile project(':jokesLib')
+    compile project(path: ':jokesBackend', configuration: 'android-endpoints')
 
     // ANDROID SUPPORT LIBRARIES
     compile 'com.android.support:appcompat-v7:23.+'

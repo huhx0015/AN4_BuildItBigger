@@ -25,7 +25,8 @@
             android:onClick="launchJokeActivity"
             android:text="@string/button_text"
 
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:id="@+id/fragment_main_joke_button" />
 
         <TextView android:text="@string/instructions"
             android:layout_width="wrap_content"
@@ -34,6 +35,14 @@
             />
 
     </LinearLayout>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_main_progress_bar"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"

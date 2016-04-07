@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 /** -----------------------------------------------------------------------------------------------
  *  [JokeFragment] CLASS
- *  PROGRAMMER: Michael Yoon Huh
  *  DESCRIPTION: JokeFragment is a Fragment class that displays a joke.
  *  -----------------------------------------------------------------------------------------------
  */
