@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--APP STYLE COLORS-->
+    <color name="primary_color">#FFEA00</color>
+    <color name="primary_dark_color">#FFD600</color>
+    <color name="accent_color">#FFFF00</color>
+
+</resources>
