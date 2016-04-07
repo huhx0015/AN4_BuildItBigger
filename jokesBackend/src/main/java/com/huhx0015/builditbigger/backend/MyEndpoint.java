@@ -9,6 +9,8 @@ package com.huhx0015.builditbigger.backend;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.huhx0015.jokeslib.JokeProducer;
+
 import javax.inject.Named;
 
 /** -----------------------------------------------------------------------------------------------
@@ -26,6 +28,7 @@ import javax.inject.Named;
     packagePath=""
   )
 )
+
 public class MyEndpoint {
 
     /** A simple endpoint method that takes a name and says Hi back */
@@ -33,6 +36,14 @@ public class MyEndpoint {
     public MyBean sayHi(@Named("name") String name) {
         MyBean response = new MyBean();
         response.setData("Hi, " + name);
+        return response;
+    }
+
+    @ApiMethod(name = "fetchJoke")
+    public MyBean fetchJoke() {
+        JokeProducer jokeProducer = new JokeProducer();
+        MyBean response = new MyBean();
+        response.setData(jokeProducer.tellMeAJoke());
         return response;
     }
 }

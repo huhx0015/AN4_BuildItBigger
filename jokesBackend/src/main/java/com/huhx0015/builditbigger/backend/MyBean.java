@@ -8,11 +8,17 @@ package com.huhx0015.builditbigger.backend;
 
 public class MyBean {
 
+    /** CLASS VARIABLES ________________________________________________________________________ **/
+
     private String myData;
+
+    /** GET METHODS ____________________________________________________________________________ **/
 
     public String getData() {
         return myData;
     }
+
+    /** SET METHODS ____________________________________________________________________________ **/
 
     public void setData(String data) {
         myData = data;
