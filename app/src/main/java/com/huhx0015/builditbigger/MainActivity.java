@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, JokeActivity.class);
         JokeProducer jokeSource = new JokeProducer();
         String joke = jokeSource.tellMeAJoke();
-        intent.putExtra(JokeActivity.JOKE_KEY, joke);
+        intent.putExtra(getResources().getString(R.string.joke_key), joke);
         startActivity(intent);
     }
 }

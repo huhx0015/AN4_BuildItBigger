@@ -8,8 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-/**
- * A placeholder fragment containing a simple view.
+/** -----------------------------------------------------------------------------------------------
+ *  [JokeFragment] CLASS
+ *  PROGRAMMER: Michael Yoon Huh
+ *  DESCRIPTION: JokeFragment is a Fragment class that displays a joke.
+ *  -----------------------------------------------------------------------------------------------
  */
 public class JokeFragment extends Fragment {
 
