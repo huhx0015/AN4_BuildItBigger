@@ -1,7 +1,13 @@
 <resources>
+
+    <!--APPLICATION STRINGS-->
     <string name="app_name">Build it Bigger</string>
+
+    <!--GENERAL STRINGS-->
     <string name="instructions">Press the button for a funny joke!</string>
     <string name="button_text">Tell Joke</string>
-    <string name="action_settings">Settings</string>
+
+    <!--AD STRINGS-->
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstitial_ad_id">ca-app-pub-3940256099942544/1033173712</string>
 </resources>

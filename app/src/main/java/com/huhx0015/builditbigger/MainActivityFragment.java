@@ -4,14 +4,17 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
@@ -32,11 +35,17 @@ public class MainActivityFragment extends Fragment {
 
     /** CLASS VARIABLES ________________________________________________________________________ **/
 
+    // ADMOB VARIABLES
+    private InterstitialAd interstitialAd;
+
     // BUILD VARIABLES
     private static final String BUILD_FREE = "1.0-free";
 
     // LAYOUT VARIABLES
     private View fragmentView;
+
+    // LOG VARIABLES
+    private static final String LOG_TAG = MainActivityFragment.class.getSimpleName();
 
     // NETWORK VARIABLES
     private static final String EMULATOR_ADDRESS = "http://10.0.2.2:8080/_ah/api/";
@@ -75,10 +84,50 @@ public class MainActivityFragment extends Fragment {
     // initAds(): Sets up the AdView for this fragment.
     private void initAds() {
 
-        // Create an ad request. Check logcat output for the hashed device ID to get test ads on a
-        // physical device. e.g. "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test
-        // ads on this device."
+        // Displays advertising if the detected build is the free version.
         if (BuildConfig.VERSION_NAME.equals(BUILD_FREE)) {
+
+            Log.d(LOG_TAG, "initAds(): Free build detected, initializing advertising...");
+
+            // INTERSTITIAL AD INITIALIZATION: Sets up the interstitial ad request.
+            interstitialAd = new InterstitialAd(getContext());
+            interstitialAd.setAdUnitId(getString(R.string.interstitial_ad_id)); // Sets test unit ID.
+
+            // Sets up an ad listener for the interstitial ad.
+            interstitialAd.setAdListener(new AdListener() {
+
+                @Override
+                public void onAdLoaded() {
+                    super.onAdLoaded();
+                    Log.d(LOG_TAG, "onAdLoaded(): Interstitial ad has been loaded.");
+                }
+
+                @Override
+                public void onAdClosed() {
+                    super.onAdClosed();
+
+                    Log.d(LOG_TAG, "onClick(): Executing EndpointsAsyncTask...");
+                    EndpointsAsyncTask task = new EndpointsAsyncTask();
+                    task.execute();
+
+                    // Requests the next interstitial ad when focus returns to this activity,
+                    requestInterstitialAd();
+                }
+
+                @Override
+                public void onAdFailedToLoad(int errorCode) {
+                    super.onAdFailedToLoad(errorCode);
+
+                    Log.e(LOG_TAG, "onAdFailedToLoad(): ERROR: Interstitial ad failed to load: " + errorCode);
+
+                    // Requests the next interstitial ad when focus returns to this activity,
+                    requestInterstitialAd();
+                }
+            });
+
+            // STANDARD AD INITIALIZATION: Creates an ad request. Check logcat output for the hashed
+            // device ID to get test ads on a physical device. e.g.
+            // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
             AdView mAdView = (AdView) fragmentView.findViewById(R.id.adView);
             AdRequest adRequest = new AdRequest.Builder()
                     .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
@@ -95,10 +144,41 @@ public class MainActivityFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                EndpointsAsyncTask task = new EndpointsAsyncTask();
-                task.execute();
+
+                boolean isExecuteTask = true;
+
+                // Displays advertising if the detected build is the free version.
+                if (BuildConfig.VERSION_NAME.equals(BUILD_FREE)) {
+
+                    // Displays the interstitial ad if ready.
+                    if (interstitialAd.isLoaded()) {
+                        interstitialAd.show();
+                        isExecuteTask = false;
+                    }
+                }
+
+                // Executes the EndpointsAsyncTask.
+                if (isExecuteTask) {
+                    Log.d(LOG_TAG, "onClick(): Executing EndpointsAsyncTask...");
+                    EndpointsAsyncTask task = new EndpointsAsyncTask();
+                    task.execute();
+                }
             }
         });
+    }
+
+    /** AD METHODS _____________________________________________________________________________ **/
+
+    // requestInterstitialAd(): Requests for a new interstitial ad to display.
+    private void requestInterstitialAd() {
+
+        Log.d(LOG_TAG, "requestAd(): Requesting new interstital ad...");
+
+        // Generates a new ad request.
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        interstitialAd.loadAd(adRequest);
     }
 
     /** INTENT METHODS _________________________________________________________________________ **/
@@ -110,7 +190,6 @@ public class MainActivityFragment extends Fragment {
         Intent jokeIntent = new Intent(getActivity(), JokeActivity.class);
         jokeIntent.putExtra(getActivity().getString(R.string.joke_key), joke);
         getActivity().startActivity(jokeIntent);
-        getActivity().finish();
     }
 
     /** SUBCLASSES _____________________________________________________________________________ **/
@@ -123,7 +202,11 @@ public class MainActivityFragment extends Fragment {
      */
     public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
 
+        /** SUBCLASS VARIABLES _________________________________________________________________ **/
+
         private MyApi myApiService = null;
+
+        /** ASYNCTASK METHODS __________________________________________________________________ **/
 
         @Override
         protected void onPreExecute() {
@@ -151,17 +234,20 @@ public class MainActivityFragment extends Fragment {
 
             // Attempts to fetch the joke from the backend.
             try { return myApiService.fetchJoke().execute().getData(); }
-            catch (IOException e) { return e.getMessage(); }
+            catch (IOException e) {
+                Log.e(LOG_TAG, "doInBackground(): ERROR: An exception has occurred: " + e.getMessage());
+                return e.getMessage();
+            }
         }
 
         @Override
         protected void onPostExecute(String result) {
+
+            Log.d(LOG_TAG, "onPostExecute(): Joke result has been retrieved: " + result);
+
             jokesProgressBar.setVisibility(View.GONE); // Hides the progress bar.
-            if (result != null) {
-                launchJokeIntent(result); // Launches an intent to JokeActivity.
-            } else {
-                jokesButtonContainer.setVisibility(View.VISIBLE); // Displays the joke button container.
-            }
+            jokesButtonContainer.setVisibility(View.VISIBLE); // Displays the joke button container.
+            launchJokeIntent(result); // Launches an intent to JokeActivity.
         }
     }
 }
