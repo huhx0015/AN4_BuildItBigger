@@ -5,6 +5,7 @@ android {
     buildToolsVersion '23.0.3'
 
     defaultConfig {
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         applicationId "com.huhx0015.builditbigger"
         minSdkVersion 10
         targetSdkVersion 22
@@ -14,6 +15,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            debuggable true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -49,8 +53,13 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.+'
     compile 'com.android.support:multidex:1.0.0'
 
+    // ANDROID TESTING LIBRARIES
+    androidTestCompile 'com.android.support:support-annotations:23.2.1'
+    androidTestCompile 'com.android.support.test:runner:0.4.1'
+    androidTestCompile 'com.android.support.test:rules:0.4.1'
+
     // GOOGLE PLAY SERVICES LIBRARIES:
-    compile 'com.google.android.gms:play-services:8.4.0'
+    freeCompile 'com.google.android.gms:play-services:8.4.0'
 
     // THIRD-PARTY LIBRARIES:
     compile 'com.jakewharton:butterknife:7.0.1'
