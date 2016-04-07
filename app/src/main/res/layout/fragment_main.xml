@@ -22,9 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/instructions_text_view"
-            android:onClick="launchJokeActivity"
+            android:onClick="launchJokeIntent"
             android:text="@string/button_text"
-
             android:layout_marginBottom="8dp"
             android:id="@+id/fragment_main_joke_button" />
 

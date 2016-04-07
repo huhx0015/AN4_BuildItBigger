@@ -4,11 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Toast;
 import com.huhx0015.jokesandroidlib.JokeActivity;
 import com.huhx0015.jokeslib.JokeProducer;
 
 public class MainActivity extends AppCompatActivity {
+
+    /** ACTIVITY LIFECYCLE METHODS _____________________________________________________________ **/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,16 +17,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void tellJoke(View view){
-        JokeProducer jokeProducer = new JokeProducer();
-        Toast.makeText(this, jokeProducer.tellMeAJoke(), Toast.LENGTH_SHORT).show();
-    }
+    /** JOKE METHODS ___________________________________________________________________________ **/
 
-    public void launchJokeActivity(View view){
+    // launchJokeIntent(): Launches an intent to the JokeActivity to display a joke.
+    public void launchJokeIntent(View view){
         Intent intent = new Intent(this, JokeActivity.class);
         JokeProducer jokeSource = new JokeProducer();
-        String joke = jokeSource.tellMeAJoke();
-        intent.putExtra(getResources().getString(R.string.joke_key), joke);
+        intent.putExtra(getResources().getString(R.string.joke_key), jokeSource.tellMeAJoke());
         startActivity(intent);
     }
 }
