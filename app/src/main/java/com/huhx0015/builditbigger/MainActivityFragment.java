@@ -32,6 +32,9 @@ public class MainActivityFragment extends Fragment {
 
     /** CLASS VARIABLES ________________________________________________________________________ **/
 
+    // BUILD VARIABLES
+    private static final String BUILD_FREE = "1.0-free";
+
     // LAYOUT VARIABLES
     private View fragmentView;
 
@@ -75,11 +78,13 @@ public class MainActivityFragment extends Fragment {
         // Create an ad request. Check logcat output for the hashed device ID to get test ads on a
         // physical device. e.g. "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test
         // ads on this device."
-        AdView mAdView = (AdView) fragmentView.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .build();
-        mAdView.loadAd(adRequest);
+        if (BuildConfig.VERSION_NAME.equals(BUILD_FREE)) {
+            AdView mAdView = (AdView) fragmentView.findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder()
+                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                    .build();
+            mAdView.loadAd(adRequest);
+        }
     }
 
     // initButton(): Initializes the button listeners for this fragment.
