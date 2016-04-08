@@ -7,6 +7,12 @@ import android.view.View;
 import com.huhx0015.jokesandroidlib.JokeActivity;
 import com.huhx0015.jokeslib.JokeProducer;
 
+/** -----------------------------------------------------------------------------------------------
+ *  [MainActivity] CLASS
+ *  DESCRIPTION: MainActivity is a Activity class that is responsible for displaying the
+ *  MainActivityFragment Fragment class.
+ *  -----------------------------------------------------------------------------------------------
+ */
 public class MainActivity extends AppCompatActivity {
 
     /** ACTIVITY LIFECYCLE METHODS _____________________________________________________________ **/
