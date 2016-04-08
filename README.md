@@ -3,6 +3,10 @@ AN4_Build_It_Bigger
 
 DEVELOPER: Michael Yoon Huh
 
+Build It Bigger:
+
+![build_it_bigger_preview](https://cloud.githubusercontent.com/assets/1645482/14377750/480e88fc-fd26-11e5-910d-c04334a741ad.gif)
+
 Android Nanodegree | Project 4: Build It Bigger: A project for the Android Nanodegree program which demonstrates the ability to create an app with multiple flavors that uses multiple libraries and Google Cloud Endpoints.
 
 # Gradle for Android and Java Final Project
