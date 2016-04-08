@@ -17,3 +17,19 @@ allprojects {
         jcenter()
     }
 }
+
+task appengineRunAndTest {
+
+    dependsOn = [":jokesBackend:appengineRun", ":app:connectedAndroidTest"]
+    evaluationDependsOn ":jokesBackend"
+
+    project(":jokesBackend") {
+        appengine {
+            daemon true
+        }
+    }
+
+    finalizedBy {
+        ":jokesBackend:appengineStop"
+    }
+}
