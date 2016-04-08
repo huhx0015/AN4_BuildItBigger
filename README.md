@@ -3,7 +3,7 @@ AN4_Build_It_Bigger
 
 DEVELOPER: Michael Yoon Huh
 
-Android Nanodegree | Project 4: Build It Bigger: A project for the Android Nanodegree program which demonstrates the ability to create an app with multiple flavors that uses multiple libraries and Google Cloud Endpoints. Currently a work in progress.
+Android Nanodegree | Project 4: Build It Bigger: A project for the Android Nanodegree program which demonstrates the ability to create an app with multiple flavors that uses multiple libraries and Google Cloud Endpoints.
 
 # Gradle for Android and Java Final Project
 
@@ -128,7 +128,7 @@ To tie it all together, create a Gradle task that:
 - [x] Project contains a Java library for supplying jokes
 - [x] Project contains an Android library with an activity that displays jokes passed to it as intent extras.
 - [x] Project contains a Google Cloud Endpoints module that supplies jokes from the Java library. Project loads jokes from GCE module via an async task.
-- [ ] Project contains connected tests to verify that the async task is indeed loading jokes.
+- [x] Project contains connected tests to verify that the async task is indeed loading jokes.
 - [x] Project contains paid/free flavors. The paid flavor has no ads, and no unnecessary dependencies.
 
 ### Required Behavior
@@ -141,4 +141,4 @@ To receive "exceeds specifications", your app must fully implement all of the fo
 
 - [x] The free app variant displays interstitial ads between the main activity and the joke-displaying activity.
 - [x] The app displays a loading indicator while the joke is being fetched from the server.
-- [ ] The root build.gradle file contains a task that will start up the GCE development server, run all Android tests, then shutdown the development server.
+- [x] The root build.gradle file contains a task that will start up the GCE development server, run all Android tests, then shutdown the development server.
