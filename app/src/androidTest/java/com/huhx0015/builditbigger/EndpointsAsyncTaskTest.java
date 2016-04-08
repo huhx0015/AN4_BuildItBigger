@@ -21,6 +21,9 @@ public class EndpointsAsyncTaskTest {
     // LOGGING VARIABLES
     private static final String LOG_TAG = EndpointsAsyncTaskTest.class.getSimpleName();
 
+    // THREAD VARIABLES
+    private static final int THREAD_TIMER = 20000;
+
     /** TEST METHODS ___________________________________________________________________________ **/
 
     @Test
@@ -30,9 +33,12 @@ public class EndpointsAsyncTaskTest {
             @Override
             public void onTaskFinished(String result) {
                 Log.i(LOG_TAG, "testDoInBackground(): EndpointsAsyncTask test complete. The joke result is: " + result);
-                assertTrue("testDoInBackground(): ERROR: Joke was: " + result, result.contains("Why"));
+                assertTrue("testDoInBackground(): ERROR: " + result, result.contains("?"));
             }
         });
         task.execute();
+
+        // FIX: This is needed to handle an execution delay, particularly for emulators.
+        Thread.sleep(THREAD_TIMER);
     }
 }

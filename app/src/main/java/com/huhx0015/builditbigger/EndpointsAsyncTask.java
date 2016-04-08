@@ -26,7 +26,7 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
     private final Callback taskCallback;
 
     // LOG VARIABLES
-    private static final String LOG_TAG = MainActivityFragment.class.getSimpleName();
+    private static final String LOG_TAG = EndpointsAsyncTask.class.getSimpleName();
 
     // NETWORK VARIABLES
     private static final String EMULATOR_ADDRESS = "http://10.0.2.2:8080/_ah/api/";
