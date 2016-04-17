@@ -22,7 +22,7 @@ public class EndpointsAsyncTaskTest {
     private static final String LOG_TAG = EndpointsAsyncTaskTest.class.getSimpleName();
 
     // THREAD VARIABLES
-    private static final int THREAD_TIMER = 20000;
+    private static final int THREAD_TIMER = 8000;
 
     /** TEST METHODS ___________________________________________________________________________ **/
 
