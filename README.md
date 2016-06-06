@@ -1,15 +1,16 @@
-AN4_Build_It_Bigger
-===================
+AN4_BuildItBigger
+=================
 
-DEVELOPER: Michael Yoon Huh
+DEVELOPER: huhx0015
 
-Build It Bigger:
-
+### BUILD IT BIGGER:
 ![build_it_bigger_preview](https://cloud.githubusercontent.com/assets/1645482/14377750/480e88fc-fd26-11e5-910d-c04334a741ad.gif)
+
+## Description
 
 Android Nanodegree | Project 4: Build It Bigger: A project for the Android Nanodegree program which demonstrates the ability to create an app with multiple flavors that uses multiple libraries and Google Cloud Endpoints.
 
-# Gradle for Android and Java Final Project
+## Gradle for Android and Java Final Project
 
 In this project, you will create an app with multiple flavors that uses
 multiple libraries and Google Could Endpoints. The finished app will consist
@@ -25,7 +26,7 @@ behavior of the Gradle build tool, allowing automation of repetitive tasks.
 Particularly, factoring functionality into libraries and creating product
 flavors allow for much bigger projects with minimal added complexity.
 
-##What Will I Learn?
+## What Will I Learn?
 
 You will learn the role of Gradle in building Android Apps and how to use Gradle to manage apps of increasing complexity. You'll learn to:
 
@@ -36,7 +37,7 @@ You will learn the role of Gradle in building Android Apps and how to use Gradle
 * Use the Gradle App Engine plugin to deploy a backend
 * Configure an integration test suite that runs against the local App Engine development server
 
-##How Do I Complete this Project?
+## How Do I Complete this Project?
 
 ### Step 0: Starting Point
 
@@ -125,7 +126,9 @@ To tie it all together, create a Gradle task that:
 2. Runs all tests
 3. Shuts the server down again
 
-# Rubric
+## Rubric
+
+Link: https://review.udacity.com/#!/projects/4295208853/rubric
 
 ### Required Components
 
