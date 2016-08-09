@@ -118,3 +118,19 @@ To receive "exceeds specifications", your app must fully implement all of the fo
 - [x] The free app variant displays interstitial ads between the main activity and the joke-displaying activity.
 - [x] The app displays a loading indicator while the joke is being fetched from the server.
 - [x] The root build.gradle file contains a task that will start up the GCE development server, run all Android tests, then shutdown the development server.
+
+## License
+
+    Copyright 2016 Michael Huh
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
